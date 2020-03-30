@@ -4,6 +4,7 @@ import Search from './Search'
 import axios from 'axios'
 import Results from './Results'
 import NavBar from  './Navbar'
+import Carousel from './Carousel'
 
 const HomePage = () => {
     const [state, setState] = useState({
@@ -45,6 +46,7 @@ const HomePage = () => {
     return(
         <div>
             <NavBar />
+            <Carousel />
             <Search handleInput={handleInput} search={api_request}/>
             <Results results={state.results} />
         </div>

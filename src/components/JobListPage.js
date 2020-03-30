@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-// import Button from 'reactstrap'
+import { Table, Button} from 'reactstrap';
 import NavBar from  './Navbar'
 import axios from 'axios'
-
+import Jumbo from './Jumbo'
 class JobListPage extends Component {
     constructor(props) {
         super(props)
@@ -34,11 +34,41 @@ class JobListPage extends Component {
     return(
         <div>
             <NavBar/>
-            <ul>{this.state.jobs.map(job => <li key={job.id}>{job.title}<button value={job.id} onClick={this.handleDelete}>Delete</button></li>)}</ul>
-        </div>
+            <Jumbo/>
+            <Table hover responsive>
+                <thead>
+                    <tr>
+                    <th>ID</th>
+                    <th>Job Title</th>
+                    <th>Area</th>
+                    <th>Company</th>
+                    </tr>
+                    </thead>
+                    {this.state.jobs.map(job => 
+                    <tbody>
+                    <tr key={job.id}>
+                    <th scope="row">{job.id}</th>
+                    <td>{job.title}</td>
+                    <td>{job.area}</td>
+                    <td>{job.company_name}</td>
+                    <Button className="float-right align-center" value={job.id} onClick={this.handleDelete}>Delete</Button>
+                    </tr>
+                    </tbody>)}
+                </Table>
+                </div>
+     
     )
 }
 }
 
 
+    
+{/* <ListGroup>
+                {this.state.jobs.map(job => 
+                <div>
+                    <ListGroupItem className="shadow-sm p-3 mb-5 bg-white rounded"key={job.id}>
+                       Job Title: {job.title} | Location: {job.area} | Company: {job.company_name}
+                        <Button className="float-right align-center" value={job.id} onClick={this.handleDelete}>Delete</Button>
+                    </ListGroupItem></div>)}
+            </ListGroup> */}
 export default JobListPage

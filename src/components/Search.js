@@ -4,7 +4,7 @@ import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
 
 function Search ({handleInput, search}) {
     return(
-        <div>
+        <div className="shadow-lg p-5 m-5 bg-white rounded">
         <InputGroup>
             <InputGroupAddon addonType="prepend">
             <InputGroupText>Title</InputGroupText>

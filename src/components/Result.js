@@ -44,7 +44,7 @@ const Result = ({result}) => {
    
   return (
     <div>
-      <Card>
+      <Card className="shadow p-3 mb-5 bg-white rounded">
         <CardBody>
           <CardTitle><a href='#' onClick={()=> window.open(`${state.url}`, '_blank')}>{state.title} at {state.company_name}</a></CardTitle>
           <CardSubtitle>{state.area}</CardSubtitle>
