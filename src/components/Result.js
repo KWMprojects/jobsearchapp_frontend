@@ -8,19 +8,14 @@ import Axios from 'axios';
 const Result = ({result}) => {
     let title = result.title.replace(/<strong>|<\/strong>/g, '')
     let description =result.description.replace(/<strong>|<\/strong>/g, '')
-    const [state, setState] = useState({
+    const [state] = useState({
         title: title,
         company_name: result.company.display_name,
-        area: result.location.display_name,
+        area: result.location.area[3] + ", " +result.location.area[1],
         description: description,
         url: result.redirect_url,
     })  
 
-    // const imgSrc = () =>{
-    //     const company = state.company_name.replace(" ", "")
-    //     return "//logo.clearbit.com/"+ company +".com"
-     
-    // }
     const handleSave = event => {
         event.preventDefault()
         const job = {
@@ -46,10 +41,10 @@ const Result = ({result}) => {
     <div>
       <Card className="shadow p-3 mb-5 bg-white rounded">
         <CardBody>
-          <CardTitle><a href='#' onClick={()=> window.open(`${state.url}`, '_blank')}>{state.title} at {state.company_name}</a></CardTitle>
+          <CardTitle><Button outline color="primary" size="lg" block onClick={()=> window.open(`${state.url}`, '_blank')}>{state.title} at {state.company_name}</Button></CardTitle>
           <CardSubtitle>{state.area}</CardSubtitle>
           <CardText>{state.description}</CardText>
-          <Button onClick={handleSave}>Save</Button>
+          <Button color="primary" size="sm"onClick={handleSave}>Save</Button>
         </CardBody>
       </Card>
     </div>

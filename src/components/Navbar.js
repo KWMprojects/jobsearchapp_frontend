@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
+
+
 const NavBar = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
@@ -17,7 +19,7 @@ const NavBar = (props) => {
               <NavLink href="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Saved Jobs</NavLink>
+              <NavLink href="/jobs/">Saved Jobs</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

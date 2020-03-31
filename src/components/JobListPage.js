@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { Table, Button} from 'reactstrap';
-import NavBar from  './Navbar'
 import axios from 'axios'
 import Jumbo from './Jumbo'
 class JobListPage extends Component {
@@ -21,19 +20,19 @@ class JobListPage extends Component {
     }
     handleDelete = event => {
         event.preventDefault()
-        axios.delete(`http://localhost:8000/jobs/${event.target.value}/`)
-        axios.get(`http://localhost:8000/jobs/`)
-        .then(res => {
-            this.setState({
-                jobs: res.data
+        const job = event.target.value
+        axios.delete(`http://localhost:8000/jobs/${job}/`)
+            .then(()=>{
+                this.setState({
+                    jobs: this.state.jobs.filter(value=>{ return value !== job })
+                })
             })
-        })
-    
+            console.log(this.state.jobs)
+        
     }
     render() {
     return(
         <div>
-            <NavBar/>
             <Jumbo/>
             <Table hover responsive>
                 <thead>
@@ -42,18 +41,20 @@ class JobListPage extends Component {
                     <th>Job Title</th>
                     <th>Area</th>
                     <th>Company</th>
+                    <th>Delete Job</th>
                     </tr>
                     </thead>
                     {this.state.jobs.map(job => 
-                    <tbody>
-                    <tr key={job.id}>
+                    <tbody key={job.id}>
+                    <tr>
                     <th scope="row">{job.id}</th>
                     <td>{job.title}</td>
                     <td>{job.area}</td>
                     <td>{job.company_name}</td>
-                    <Button className="float-right align-center" value={job.id} onClick={this.handleDelete}>Delete</Button>
+                    <Button color="primary" size="lg" className="float-right align-center" value={job.id} onClick={this.handleDelete}>Delete</Button>
                     </tr>
-                    </tbody>)}
+                    </tbody>
+                    )}
                 </Table>
                 </div>
      
@@ -61,14 +62,4 @@ class JobListPage extends Component {
 }
 }
 
-
-    
-{/* <ListGroup>
-                {this.state.jobs.map(job => 
-                <div>
-                    <ListGroupItem className="shadow-sm p-3 mb-5 bg-white rounded"key={job.id}>
-                       Job Title: {job.title} | Location: {job.area} | Company: {job.company_name}
-                        <Button className="float-right align-center" value={job.id} onClick={this.handleDelete}>Delete</Button>
-                    </ListGroupItem></div>)}
-            </ListGroup> */}
 export default JobListPage

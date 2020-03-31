@@ -12,6 +12,7 @@ const items = [
     src: 'https://content.thriveglobal.com/wp-content/uploads/2019/08/load-image.jpg',
     altText: 'LOVE TO WORK',
     caption: '--Be Engaged--'
+    
   },
   {
     src: 'https://www.incimages.com/uploaded_files/image/1940x900/getty_846275012_2000133420009280149_365682.jpg',
@@ -54,7 +55,7 @@ const CarouselCom = (props) => {
         key={item.src}
       >
         <img src={item.src} alt={item.altText} />
-        <CarouselCaption className='text-primary'captionHeader={item.caption} />
+        <CarouselCaption className='text-primary'captionHeader={item.caption} captionText='' />
       </CarouselItem>
     );
   });
