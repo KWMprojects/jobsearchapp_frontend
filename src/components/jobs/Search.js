@@ -7,7 +7,7 @@ function Search ({handleInput, search}) {
         <div className="shadow-lg p-5 m-5 bg-white rounded">
         <InputGroup>
             <InputGroupAddon addonType="prepend">
-            <InputGroupText>Title</InputGroupText>
+            <InputGroupText>Job Title</InputGroupText>
             </InputGroupAddon>
             <Input type='text' placeholder="Search for a job" onChange={handleInput} onKeyPress={search}/>
         </InputGroup>

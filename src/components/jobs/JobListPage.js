@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Table, Button} from 'reactstrap';
 import axios from 'axios'
-import Jumbo from './Jumbo'
+import Jumbo from '../universal/Jumbo'
 class JobListPage extends Component {
     constructor(props) {
         super(props)
@@ -20,15 +20,16 @@ class JobListPage extends Component {
     }
     handleDelete = event => {
         event.preventDefault()
-        const job = event.target.value
-        axios.delete(`http://localhost:8000/jobs/${job}/`)
-            .then(()=>{
-                this.setState({
-                    jobs: this.state.jobs.filter(value=>{ return value !== job })
-                })
-            })
-            console.log(this.state.jobs)
-        
+        const jobID = event.target.value
+        // this.setState(state => {
+        //     const newjobs = state.jobs.filter(item => item.id !== jobID)
+        //     console.log('this happened')
+        //     return {jobs: newjobs}
+        // })
+        // console.log(this.state.jobs)
+        axios.delete(`http://localhost:8000/jobs/${jobID}/`)
+            .then(console.log(`Job with job id of ${jobID} was deleted`))
+            .then(this.forceUpdate())
     }
     render() {
     return(

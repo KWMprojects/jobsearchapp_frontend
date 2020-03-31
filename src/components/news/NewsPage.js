@@ -1,11 +1,12 @@
 import React, {useState}from 'react';
 
-import Search from './jobs/Search'
+import Search from './Search'
 import axios from 'axios'
-import Results from './jobs/Results'
-import Carousel from './universal/Carousel'
+import Results from './Results'
+import NewsHeader from './NewsHeader'
 
-const HomePage = () => {
+
+const NewsPage = () => {
     const [state, setState] = useState({
             search: "",
             results: [],
@@ -13,11 +14,12 @@ const HomePage = () => {
           })
         
         
-          let job_api_url_base = 'http://api.adzuna.com/v1/api/jobs/us/search/1?content-type=application/json&app_id=76d4045a&app_key=e7338611f49613978defb001ea0fc69c'
+          let tempsearch = state.search.replace(' ', '%20')
+          let news_api_url_base = `https://newsapi.org/v2/everything?q=${tempsearch}&apiKey=3e4772226fb4485aa8beccbd06c9cff1`
           const api_request = (e) => {
             if(e.key === "Enter"){
-              axios.get(job_api_url_base + "&what=" + state.search.replace(' ', '%20')).then(({data}) => {
-                let results = data.results
+              axios.get(news_api_url_base).then(({data}) => {
+                let results = data.articles
                 setState(prevState =>{
                   return {...prevState, results: results}
                 })
@@ -33,7 +35,7 @@ const HomePage = () => {
           }
     return(
         <div>
-            <Carousel />
+            <NewsHeader/>
             <Search handleInput={handleInput} search={api_request}/>
             <Results results={state.results} />
         </div>
@@ -41,4 +43,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
+export default NewsPage

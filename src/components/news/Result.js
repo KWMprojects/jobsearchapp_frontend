@@ -1,32 +1,30 @@
 import React, {useState} from 'react';
 import {
-  Card, CardText, CardBody,
+  Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 import Axios from 'axios';
 
 const Result = ({result}) => {
-    let title = result.title.replace(/<strong>|<\/strong>/g, '')
-    let description =result.description.replace(/<strong>|<\/strong>/g, '')
     const [state] = useState({
-        title: title,
-        company_name: result.company.display_name,
-        area: result.location.area[3] + ", " +result.location.area[1],
-        description: description,
-        url: result.redirect_url,
+        title: result.title,
+        author: result.author,
+        description: result.description,
+        image: result.urlToImage,
+        url: result.url,
     })  
 
     const handleSave = event => {
         event.preventDefault()
-        const job = {
+        const article = {
             title: `${state.title}`,
-            company_name: `${state.company_name}`,
-            area: `${state.area}`,
+            author: `${state.author}`,
             description: `${state.description}`,
+            image: `${state.image}`,
             url: `${state.url}`,
         }
-        console.log(job)
-        Axios.post(`http://localhost:8000/jobs/`, job)
+        console.log(article)
+        Axios.post(`http://localhost:8000/news/`, article)
         .then(res => {
             console.log(res.data)
         })
@@ -40,9 +38,11 @@ const Result = ({result}) => {
   return (
     <div>
       <Card className="shadow p-3 mb-5 bg-white rounded">
+      <CardImg top width="100%" src={state.image} alt="Card image cap" />
         <CardBody>
-          <CardTitle><Button outline color="primary" size="lg" block onClick={()=> window.open(`${state.url}`, '_blank')}>{state.title} at {state.company_name}</Button></CardTitle>
-          <CardSubtitle>{state.area}</CardSubtitle>
+          <CardTitle><a href={state.url} target="_blank" rel="noopener noreferrer" style={{fontWeight: 'bold'}}>{state.title}</a></CardTitle>
+          <CardSubtitle>by {state.author}</CardSubtitle>
+          <hr/>
           <CardText>{state.description}</CardText>
           <Button color="primary" size="sm"onClick={handleSave}>Save</Button>
         </CardBody>
