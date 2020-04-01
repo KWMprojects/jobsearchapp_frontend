@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { Col , Row} from 'reactstrap'
+import { Col } from 'reactstrap'
 
 import Result from './Result'
 
 const Results = ({results}) =>{
     return (
-        <Row>
-            {results.map(result => <Col sm="12" md={{ size: 6, offset: 3 }}><Result key={result.id} result={result} /></Col>)}
-        </Row>
+        <section>
+            {results.map(result => <Col sm="12" md="12" lg={{ size: 6, offset: 3 }} key={result.id}><Result key={result.id} result={result} /></Col>)}
+        </section>
     )
 }
 export default Results

@@ -8,19 +8,22 @@ import Search from './jobs/Search'
 
 const HomePage = () => {
   const [state, setState] = useState({
-          search: "",
+          title: "",
+          state: "",
           results: [],
           selected: {}
         })
       
   const api_request = (e)=> {
-    let tempsearch = state.search.replace(' ', '%20')
+    let temptitle = state.title.replace(' ', '%20')
+    let tempstate = state.state.replace(' ', '%20')
     if(e.key === "Enter"){
       axios({
         method: 'post',
         url: 'http://localhost:8000/article-data/',
         data: {
-          search: tempsearch
+          title: temptitle,
+          state: tempstate
         }
       })
       .then(({data}) => {
@@ -35,17 +38,24 @@ const HomePage = () => {
     }
   }
 
-  const handleInput = (e) => {
+  const handleInputTitle = (e) => {
     let search = e.target.value
     setState(prevState => {
-      return { ...prevState, search: search}
+      return { ...prevState, title: search}
     })
   }
   
+  const handleInputState = (e) => {
+    let search = e.target.value
+    setState(prevState => {
+      return { ...prevState, state: search}
+    })
+  }
+
   return(
       <div>
           <Carousel />
-          <Search handleInput={handleInput} search={api_request}/>
+          <Search handleInputTitle={handleInputTitle} handleInputState={handleInputState} search={api_request}/>
           <Results results={state.results} />
       </div>
   

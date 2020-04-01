@@ -18,7 +18,7 @@ const Result = ({result}) => {
   const [state] = useState({
       title: title,
       company_name: result.company.display_name,
-      area: result.location.area[3] + ", " +result.location.area[1],
+      area: result.location.area.length < 4 ? result.location.area[2] + ", " + result.location.area[1] : result.location.area[3] + ", " +result.location.area[1],
       description: description,
       url: result.redirect_url,
   })  

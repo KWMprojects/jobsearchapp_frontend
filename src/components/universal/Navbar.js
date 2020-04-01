@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import React, { useState } from 'react'
+import {Collapse, 
+        Navbar, 
+        NavbarToggler, 
+        NavbarBrand, 
+        Nav, 
+        NavItem, 
+        NavLink 
+} from 'reactstrap'
 
 
 
-const NavBar = (props) => {
-  const [collapsed, setCollapsed] = useState(true);
+const NavBar = () => {
+  const [collapsed, setCollapsed] = useState(true)
 
-  const toggleNavbar = () => setCollapsed(!collapsed);
+  const toggleNavbar = () => setCollapsed(!collapsed)
 
   return (
     <div className='p-2 m-1'>

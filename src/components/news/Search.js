@@ -4,7 +4,8 @@ import {
     InputGroup, 
     InputGroupAddon, 
     InputGroupText, 
-    Input } from 'reactstrap'
+    Input 
+} from 'reactstrap'
 
 
 function Search ({handleInput, search}) {
