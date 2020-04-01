@@ -25,9 +25,6 @@ const Result = ({result}) => {
         }
         console.log(article)
         Axios.post(`http://localhost:8000/news/`, article)
-        .then(res => {
-            console.log(res.data)
-        })
         .catch(error =>{
             console.log(error)
         })

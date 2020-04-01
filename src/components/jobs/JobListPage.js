@@ -11,6 +11,11 @@ class JobListPage extends Component {
     }
     
     componentDidMount() {
+        this.getJobs()
+        setInterval(this.getJobs, 1000);
+    }
+
+    getJobs = () => {
         axios.get(`http://localhost:8000/jobs/`)
             .then(res => {
                 this.setState({
@@ -21,15 +26,7 @@ class JobListPage extends Component {
     handleDelete = event => {
         event.preventDefault()
         const jobID = event.target.value
-        // this.setState(state => {
-        //     const newjobs = state.jobs.filter(item => item.id !== jobID)
-        //     console.log('this happened')
-        //     return {jobs: newjobs}
-        // })
-        // console.log(this.state.jobs)
         axios.delete(`http://localhost:8000/jobs/${jobID}/`)
-            .then(console.log(`Job with job id of ${jobID} was deleted`))
-            .then(this.forceUpdate())
     }
     render() {
     return(

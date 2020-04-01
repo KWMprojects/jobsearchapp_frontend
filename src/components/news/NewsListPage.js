@@ -11,26 +11,28 @@ class NewsListPage extends Component {
     }
     
     componentDidMount() {
-        axios.get(`http://localhost:8000/news/`)
-            .then(res => {
-                this.setState({
-                    news: res.data
-                })
-            })
+        this.getJobs()
+        setInterval(this.getJobs, 1000);
     }
+
+
+
+    getJobs = () => {
+        axios.get(`http://localhost:8000/news/`)
+        .then(res => {
+            this.setState({
+                news: res.data,
+            })
+        })
+    }
+
     handleDelete = event => {
         event.preventDefault()
         const article = event.target.value
-        const filter = this.state.news.filter(value=>{ return value !== article })
-        axios.delete(`http://localhost:8000/news/${article}/`)
-            .then(
-                this.setState({
-                    news: filter
-                })
-            )
-            console.log(this.state.news)
-        
+        axios.delete(`http://localhost:8000/news/${article}/`)      
     }
+
+
     render() {
     return(
         <div>
