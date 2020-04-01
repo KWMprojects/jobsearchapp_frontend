@@ -59,7 +59,7 @@ class JobListPage extends Component {
                 <tbody key={job.id}>
                         <tr>
                         <th scope="row">{job.id}</th>
-                        <td>{job.title}</td>
+                        <td><a href={job.url} target="_blank" rel="noopener noreferrer">{job.title}</a></td>
                         <td>{job.area}</td>
                         <td>{job.company_name}</td>
                         <Button color="primary" size="lg" className="float-right align-center" value={job.id} onClick={this.handleDelete}>Delete</Button>
