@@ -1,11 +1,14 @@
 import React from 'react'
+
+import { Container } from 'reactstrap'
+
 import Result from './Result'
 
 const Results = ({results}) =>{
     return (
-        <section className="results">
+        <Container>
             {results.map(result => <Result key={result.id} result={result} />)}
-        </section>
+        </Container>
     )
 }
 export default Results

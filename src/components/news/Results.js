@@ -1,6 +1,8 @@
 import React from 'react'
+
+import { Col , Row} from 'reactstrap'
+
 import Result from './Result'
-import { Col , Row} from 'reactstrap';
 
 const Results = ({results}) =>{
     return (

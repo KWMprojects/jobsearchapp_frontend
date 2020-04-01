@@ -1,5 +1,7 @@
-import React from 'react';
-import { Jumbotron, Container } from 'reactstrap';
+import React from 'react'
+
+import { Jumbotron, Container } from 'reactstrap'
+
 import './NewsHeader.css'
 
 const NewsHeader = () => {
@@ -15,4 +17,4 @@ const NewsHeader = () => {
   );
 };
 
-export default NewsHeader;
+export default NewsHeader
